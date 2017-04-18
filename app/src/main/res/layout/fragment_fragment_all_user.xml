@@ -1,0 +1,12 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/matchParent"
+    tools:context="com.nrs.shelfbeedev.fragments.FragmentAllUser">
+
+
+
+    <ListView
+        style="@style/matchParent"
+        android:id="@+id/allUserList"/>
+
+</RelativeLayout>

@@ -1,0 +1,28 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.nrs.shelfbeedev.fragments.FragmentBottomNav">
+
+
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/fragemntBottomNaviagtion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        app:itemBackground="@color/colorPrimary"
+        app:itemIconTint="@color/colorAccent"
+        android:elevation="@dimen/toolbarElevation"
+        app:itemTextColor="@color/colorAccent"
+        app:menu="@menu/bottom_menu" />
+
+    <RelativeLayout
+        android:layout_above="@id/fragemntBottomNaviagtion"
+        android:id="@+id/fragBtmNavConatiner"
+        style="@style/matchParent"/>
+
+
+</RelativeLayout>
