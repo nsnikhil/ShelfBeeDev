@@ -1,0 +1,30 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/matchParent">
+
+
+    <LinearLayout
+        style="@style/wrapContent"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:contentDescription="@string/ImageDescriptionBackground"
+            android:layout_width="160dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:src="@drawable/launcherlogo"
+            android:layout_height="160dp" />
+
+        <TextView
+            style="@style/wrapContent"
+            android:layout_marginTop="8dp"
+            android:text="@string/app_name"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/colorAccent"
+            android:textSize="36sp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
