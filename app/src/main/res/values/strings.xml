@@ -15,6 +15,8 @@
     <!-- Urls-->
     <string name="urlServerLink">http://ec2-35-154-208-1.ap-south-1.compute.amazonaws.com/</string>
     <string name="urlUserAll">booktrade/userQueryEvery.php</string>
+    <string name="urlTransactionAll">booktrade/transactionAllQuery.php</string>
+    <string name="urlTransactionPending">booktrade/transactionQueryPending.php</string>
     <!-- -->
 
 </resources>
