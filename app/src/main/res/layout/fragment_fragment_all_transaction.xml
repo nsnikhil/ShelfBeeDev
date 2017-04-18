@@ -3,8 +3,6 @@
     style="@style/matchParent"
     tools:context="com.nrs.shelfbeedev.fragments.FragmentAllTransaction">
 
-
-
    <ListView
       style="@style/matchParent"
        android:id="@+id/allTransactionList"/>
