@@ -1,6 +1,7 @@
 package com.nrs.shelfbeedev.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -19,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.nrs.shelfbeedev.R;
+import com.nrs.shelfbeedev.TransDetailActivity;
 import com.nrs.shelfbeedev.adapter.AdapterTransaction;
 import com.nrs.shelfbeedev.network.VolleySingleton;
 import com.nrs.shelfbeedev.object.ObjectBookTransaction;
@@ -37,7 +40,7 @@ import butterknife.Unbinder;
 
 public class FragmentPendingTransaction extends android.support.v4.app.Fragment {
 
-    @BindView(R.id.pendingTransactionList) RecyclerView mPendingList;
+    @BindView(R.id.pendingTransactionList) ListView mPendingList;
     @BindView(R.id.pendingTransactionSwipeRefresh) SwipeRefreshLayout mSwipeRefresh;
     private Unbinder mUnbinder;
     private ArrayList<ObjectBookTransaction> mList;
@@ -53,11 +56,10 @@ public class FragmentPendingTransaction extends android.support.v4.app.Fragment 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_fragment_pending_transaction, container, false);
         mUnbinder = ButterKnife.bind(this,v);
-        mPendingList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mList = new ArrayList<>();
-        listeners();
-        buildAllTransactionUri();
-        mSwipeRefresh.setRefreshing(true);
+        //mList = new ArrayList<>();
+        //listeners();
+        //buildAllTransactionUri();
+        //mSwipeRefresh.setRefreshing(true);
         return v;
     }
 
@@ -69,6 +71,17 @@ public class FragmentPendingTransaction extends android.support.v4.app.Fragment 
                 mPendingList.setAdapter(null);
                 mList.clear();
                 buildAllTransactionUri();
+            }
+        });
+        mPendingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ObjectBookTransaction objectTransaction = (ObjectBookTransaction) parent.getItemAtPosition(position);
+                Intent detail = new Intent(getActivity(), TransDetailActivity.class);
+                Bundle b = new Bundle();
+                b.putSerializable(getActivity().getResources().getString(R.string.bundleSerialKey), objectTransaction);
+                detail.putExtras(b);
+                startActivity(detail);
             }
         });
     }

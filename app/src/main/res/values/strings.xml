@@ -26,7 +26,7 @@
     <!-- Details-->
     <string name="detailBuyer">Buyer</string>
     <string name="detailSeller">Seller</string>
-    <string name="detailDone">Done</string>
+    <string name="detailDone">Delivered</string>
     <string name="detailName">Name</string>
     <string name="detailPhone">Phone</string>
     <string name="detailAddress">Address</string>
@@ -41,7 +41,7 @@
     <string name="urlTransactionAllItems">booktrade/transactionAllItems.php</string>
     <string name="urlTransactionPendingItems">booktrade/transactionPendingItems.php</string>
     <string name="urlUserSingle">booktrade/userQueryAll.php</string>
-
+    <string name="urlTransactionDone">booktrade/transactionUpdateStatus.php</string>
     <!-- -->
 
 </resources>

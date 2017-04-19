@@ -34,7 +34,7 @@ import butterknife.Unbinder;
 
 public class FragmentAllUser extends android.support.v4.app.Fragment {
 
-    @BindView(R.id.allUserList) RecyclerView mAllUserList;
+    @BindView(R.id.allUserList) ListView mAllUserList;
     @BindView(R.id.allUserSwipeRefresh) SwipeRefreshLayout mSwipeRefresh;
     private Unbinder mUnbinder;
     AdapterList mAdapterList;
@@ -49,7 +49,6 @@ public class FragmentAllUser extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v =  inflater.inflate(R.layout.fragment_fragment_all_user, container, false);
         mUnbinder = ButterKnife.bind(this,v);
-        mAllUserList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mUserList = new ArrayList<>();
         buildAllUserUri();
         mSwipeRefresh.setRefreshing(true);

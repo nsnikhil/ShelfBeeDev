@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +24,7 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AdapterTransaction extends RecyclerView.Adapter<AdapterTransaction.MyViewHolder>{
+public class AdapterTransaction extends BaseAdapter{
 
     ArrayList<ObjectBookTransaction> mList;
     Context mContext;
@@ -34,25 +35,34 @@ public class AdapterTransaction extends RecyclerView.Adapter<AdapterTransaction.
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.single_transaction_item,parent,false);
-        return new MyViewHolder(v);
+    public int getCount() {
+        return mList.size();
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, final int position) {
-        final ObjectBookTransaction objectTransaction = mList.get(position);
-        holder.mName.setText(objectTransaction.getName());
-        holder.mDate.setText(makeDate(objectTransaction.getBuytime()));
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext.getApplicationContext(),TransDetailActivity.class);
-                Bundle b = new Bundle();
-                b.putSerializable(mContext.getResources().getString(R.string.bundleSerialKey),objectTransaction);
-                mContext.startActivity(intent,b);
-            }
-        });
+    public Object getItem(int position) {
+        return mList.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        MyViewHolder myViewHolder;
+        if(convertView==null){
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.single_transaction_item,parent,false);
+            myViewHolder = new MyViewHolder(convertView);
+            convertView.setTag(myViewHolder);
+        }else {
+            myViewHolder = (MyViewHolder) convertView.getTag();
+        }
+        ObjectBookTransaction object = mList.get(position);
+        myViewHolder.mName.setText(object.getName());
+        myViewHolder.mDate.setText(makeDate(object.getBuytime()));
+        return null;
     }
 
     private String makeDate(String time){
@@ -62,10 +72,6 @@ public class AdapterTransaction extends RecyclerView.Adapter<AdapterTransaction.
         return formatter.format(calendar.getTime());
     }
 
-    @Override
-    public int getItemCount() {
-        return mList.size();
-    }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.transItemName) TextView mName;

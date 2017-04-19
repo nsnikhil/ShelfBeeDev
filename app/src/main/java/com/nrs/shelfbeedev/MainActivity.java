@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initialize() {
         setSupportActionBar(mMainToolbar);
+        mMainToolbar.setElevation(0);
     }
 
     private boolean checkConnection() {

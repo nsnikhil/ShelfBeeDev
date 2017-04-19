@@ -7,7 +7,7 @@
        style="@style/matchParent"
         android:id="@+id/allUserSwipeRefresh">
 
-    <android.support.v7.widget.RecyclerView
+    <ListView
         style="@style/matchParent"
         android:id="@+id/allUserList"/>
 
