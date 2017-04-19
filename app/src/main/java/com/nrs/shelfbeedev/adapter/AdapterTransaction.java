@@ -58,7 +58,7 @@ public class AdapterTransaction extends BaseAdapter {
         ObjectBookTransaction object = mList.get(position);
         myViewHolder.mName.setText(object.getName());
         myViewHolder.mDate.setText(makeDate(object.getBuytime()));
-        return null;
+        return convertView;
     }
 
     private String makeDate(String time) {

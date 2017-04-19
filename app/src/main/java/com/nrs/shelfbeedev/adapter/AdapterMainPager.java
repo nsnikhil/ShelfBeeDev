@@ -4,12 +4,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.nrs.shelfbeedev.fragments.FragmentPendingTransaction;
+import com.nrs.shelfbeedev.fragments.FragmentAllTransactions;
+import com.nrs.shelfbeedev.fragments.FragmentPendingTransactions;
 
 
 public class AdapterMainPager extends FragmentStatePagerAdapter {
 
-    private static final CharSequence[] mPageTitle = {"Pending Transactions", "All Transactions"};
+    private static final CharSequence[] mPageTitle = {"Pending", "All"};
 
     public AdapterMainPager(FragmentManager fm) {
         super(fm);
@@ -17,12 +18,12 @@ public class AdapterMainPager extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        if (position == 0) {
-            return new FragmentPendingTransaction();
-        } else if (position == 1) {
-            return new FragmentPendingTransaction();
-        }
-        return null;
+       if(position==0){
+           return new FragmentPendingTransactions();
+       }else if(position==1){
+           return new FragmentAllTransactions();
+       }
+       return null;
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.nrs.shelfbeedev.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -21,42 +23,38 @@ import com.nrs.shelfbeedev.TransDetailActivity;
 import com.nrs.shelfbeedev.adapter.AdapterTransaction;
 import com.nrs.shelfbeedev.network.VolleySingleton;
 import com.nrs.shelfbeedev.object.ObjectBookTransaction;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 
-public class FragmentPendingTransaction extends android.support.v4.app.Fragment {
+public class FragmentPendingTransactions extends android.support.v4.app.Fragment {
 
-    @BindView(R.id.pendingTransactionList)
-    ListView mPendingList;
-    @BindView(R.id.pendingTransactionSwipeRefresh)
+
+    public FragmentPendingTransactions() {
+
+    }
+
+    @BindView(R.id.allTransactionList)
+    ListView mAllTransactions;
+    @BindView(R.id.allTransactionSwipeRefresh)
     SwipeRefreshLayout mSwipeRefresh;
     private Unbinder mUnbinder;
     private ArrayList<ObjectBookTransaction> mList;
     private AdapterTransaction adapterTransaction;
 
-
-    public FragmentPendingTransaction() {
-
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_fragment_pending_transaction, container, false);
+        View v = inflater.inflate(R.layout.fragment_all_transactions, container, false);
         mUnbinder = ButterKnife.bind(this, v);
-        //mList = new ArrayList<>();
-        //listeners();
-        //buildAllTransactionUri();
-        //mSwipeRefresh.setRefreshing(true);
+        mList = new ArrayList<>();
+        listeners();
+        buildAllTransactionUri();
+        mSwipeRefresh.setRefreshing(true);
         return v;
     }
 
@@ -65,12 +63,12 @@ public class FragmentPendingTransaction extends android.support.v4.app.Fragment 
             @Override
             public void onRefresh() {
                 mSwipeRefresh.setRefreshing(true);
-                mPendingList.setAdapter(null);
+                mAllTransactions.setAdapter(null);
                 mList.clear();
                 buildAllTransactionUri();
             }
         });
-        mPendingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mAllTransactions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ObjectBookTransaction objectTransaction = (ObjectBookTransaction) parent.getItemAtPosition(position);
@@ -82,7 +80,6 @@ public class FragmentPendingTransaction extends android.support.v4.app.Fragment 
             }
         });
     }
-
 
     private void buildAllTransactionUri() {
         String mHostName = getActivity().getResources().getString(R.string.urlServerLink);
@@ -139,9 +136,8 @@ public class FragmentPendingTransaction extends android.support.v4.app.Fragment 
             }
         }
         adapterTransaction = new AdapterTransaction(getActivity(), mList);
-        mPendingList.setAdapter(adapterTransaction);
+        mAllTransactions.setAdapter(adapterTransaction);
     }
-
 
     @Override
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
@@ -173,4 +169,6 @@ public class FragmentPendingTransaction extends android.support.v4.app.Fragment 
         super.onDestroy();
         mUnbinder.unbind();
     }
+
+
 }

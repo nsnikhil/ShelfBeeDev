@@ -1,15 +1,17 @@
 package com.nrs.shelfbeedev.fragments;
 
-
 import android.content.Intent;
-import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.android.volley.Request;
@@ -32,25 +34,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
+public class FragmentAllTransactions extends Fragment {
 
-public class FragmentAllTransaction extends android.support.v4.app.Fragment {
-
-    @BindView(R.id.allTransactionList)
-    ListView mAllTransactions;
-    @BindView(R.id.allTransactionSwipeRefresh)
-    SwipeRefreshLayout mSwipeRefresh;
+    @BindView(R.id.allTransactionList) ListView mAllTransactions;
+    @BindView(R.id.allTransactionSwipeRefresh) SwipeRefreshLayout mSwipeRefresh;
     private Unbinder mUnbinder;
     private ArrayList<ObjectBookTransaction> mList;
     private AdapterTransaction adapterTransaction;
 
-
-    public FragmentAllTransaction() {
-
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_fragment_all_transaction, container, false);
+        View v = inflater.inflate(R.layout.fragment_all_transactions, container, false);
         mUnbinder = ButterKnife.bind(this, v);
         mList = new ArrayList<>();
         listeners();
@@ -170,4 +164,5 @@ public class FragmentAllTransaction extends android.support.v4.app.Fragment {
         super.onDestroy();
         mUnbinder.unbind();
     }
+
 }
