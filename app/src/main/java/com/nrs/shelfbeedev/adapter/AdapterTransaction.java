@@ -2,14 +2,18 @@ package com.nrs.shelfbeedev.adapter;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nrs.shelfbeedev.R;
-import com.nrs.shelfbeedev.object.ObjectTransaction;
+import com.nrs.shelfbeedev.TransDetailActivity;
+import com.nrs.shelfbeedev.object.ObjectBookTransaction;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,10 +25,10 @@ import butterknife.ButterKnife;
 
 public class AdapterTransaction extends RecyclerView.Adapter<AdapterTransaction.MyViewHolder>{
 
-    ArrayList<ObjectTransaction> mList;
+    ArrayList<ObjectBookTransaction> mList;
     Context mContext;
 
-    public AdapterTransaction(Context context,ArrayList<ObjectTransaction> list){
+    public AdapterTransaction(Context context,ArrayList<ObjectBookTransaction> list){
         mContext = context;
         mList = list;
     }
@@ -36,10 +40,19 @@ public class AdapterTransaction extends RecyclerView.Adapter<AdapterTransaction.
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        ObjectTransaction objectTransaction = mList.get(position);
-        holder.mName.setText(objectTransaction.getBookId());
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
+        final ObjectBookTransaction objectTransaction = mList.get(position);
+        holder.mName.setText(objectTransaction.getName());
         holder.mDate.setText(makeDate(objectTransaction.getBuytime()));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext.getApplicationContext(),TransDetailActivity.class);
+                Bundle b = new Bundle();
+                b.putSerializable(mContext.getResources().getString(R.string.bundleSerialKey),objectTransaction);
+                mContext.startActivity(intent,b);
+            }
+        });
     }
 
     private String makeDate(String time){

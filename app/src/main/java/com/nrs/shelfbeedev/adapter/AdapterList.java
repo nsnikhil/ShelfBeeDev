@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nrs.shelfbeedev.R;
 import com.nrs.shelfbeedev.object.ObjectUser;
@@ -40,11 +41,17 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.MyViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder,final int position) {
         ObjectUser user = mList.get(position);
         holder.mName.setText(user.getName());
         holder.mHeading.setText(String.valueOf(mList.get(position).getName().toUpperCase().charAt(0)));
         holder.mConatiner.setBackgroundTintList(stateList());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext,"Clicked at"+position,Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

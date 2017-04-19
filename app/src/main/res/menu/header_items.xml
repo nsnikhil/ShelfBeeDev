@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/navTransaction"
+        android:icon="@drawable/ic_view_list_white_48dp"
+        android:id="@+id/navItemTransactions"/>
+    <item android:title="@string/navUsers"
+        android:icon="@drawable/ic_account_circle_white_48dp"
+        android:id="@+id/navItemUsers"/>
+    <item android:title="@string/navFinance"
+        android:icon="@drawable/ic_attach_money_white_48dp"
+        android:id="@+id/navItemFinance"/>
+</menu>

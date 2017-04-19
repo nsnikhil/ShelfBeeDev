@@ -8,7 +8,7 @@ import com.nrs.shelfbeedev.fragments.*;
 
 public class AdapterMainPager extends FragmentStatePagerAdapter{
 
-    private static final CharSequence[] mPageTitle = {"Transactions", "Users"};
+    private static final CharSequence[] mPageTitle = {"Pending Transactions", "All Transactions"};
 
     public AdapterMainPager(FragmentManager fm) {
         super(fm);
@@ -17,9 +17,9 @@ public class AdapterMainPager extends FragmentStatePagerAdapter{
     @Override
     public Fragment getItem(int position) {
         if(position==0){
-            return new FragmentBottomNav();
+            return new FragmentPendingTransaction();
         }else if(position==1){
-            return new FragmentAllUser();
+            return new FragmentPendingTransaction();
         }
         return null;
     }

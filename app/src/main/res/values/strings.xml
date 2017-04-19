@@ -3,13 +3,34 @@
     <string name="ImageDescriptionError">Error</string>
     <string name="ImageDescriptionBackground">Background</string>
     <string name="search">Search</string>
+    <string name="drawerOpen">Open</string>
+    <string name="drawerClose">Close</string>
+    <string name="noInternet">No Internet</string>
+    <string name="retry">Retry</string>
+    <string name="imageDescription">Background</string>
+    <string name="imageErrorDescription">Error</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <!--BottomNavigation-->
-    <string name="bottomAllTransaction">All Transactions</string>
-    <string name="bottomPendingTransaction">Pending Transactions</string>
+    <!-- NavigationItems-->
+    <string name="navTransaction">Transactions</string>
+    <string name="navUsers">Users</string>
+    <string name="navFinance">Finance</string>
+    <!-- -->
+
+    <!-- BundleKey-->
+    <string name="bundleSerialKey">bndlsrlky</string>
+    <!-- -->
+
+    <!-- Details-->
+    <string name="detailBuyer">Buyer</string>
+    <string name="detailSeller">Seller</string>
+    <string name="detailDone">Done</string>
+    <string name="detailName">Name</string>
+    <string name="detailPhone">Phone</string>
+    <string name="detailAddress">Address</string>
+    <string name="detailDate">Date</string>
     <!-- -->
 
     <!-- Urls-->
@@ -17,6 +38,10 @@
     <string name="urlUserAll">booktrade/userQueryEvery.php</string>
     <string name="urlTransactionAll">booktrade/transactionAllQuery.php</string>
     <string name="urlTransactionPending">booktrade/transactionQueryPending.php</string>
+    <string name="urlTransactionAllItems">booktrade/transactionAllItems.php</string>
+    <string name="urlTransactionPendingItems">booktrade/transactionPendingItems.php</string>
+    <string name="urlUserSingle">booktrade/userQueryAll.php</string>
+
     <!-- -->
 
 </resources>

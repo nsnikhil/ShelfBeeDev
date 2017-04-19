@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/verticalLinearLayout"
+    tools:context="com.nrs.shelfbeedev.TransDetailActivity">
+
+    <include
+        android:id="@+id/detailToolbar"
+        layout="@layout/toolbar" />
+
+    <Button
+        style="@style/wrapContent"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:id="@+id/detailsDone"
+        android:background="@color/colorPrimary"
+        android:text="@string/detailDone" />
+
+    <ScrollView style="@style/matchParent"
+        android:layout_above="@id/detailsDone"
+        android:layout_below="@id/detailToolbar">
+
+        <LinearLayout style="@style/verticalLinearLayout">
+
+            <android.support.v7.widget.CardView
+                style="@style/matchParent"
+                card_view:cardCornerRadius="3dp"
+                card_view:cardElevation="4dp"
+                card_view:cardMaxElevation="8dp"
+                card_view:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:id="@+id/detailBuyerConatiner"
+                    style="@style/matchParent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/eight">
+
+                    <TextView
+                        android:id="@+id/detailBuyerHeading"
+                        style="@style/detailHeading"
+                        android:text="@string/detailBuyer" />
+
+                    <TextView
+                        android:id="@+id/detailBuyerName"
+                        style="@style/detailText"
+                        android:text="@string/detailName" />
+
+                    <TextView
+                        android:id="@+id/detailBuyerPhone"
+                        style="@style/detailText"
+                        android:text="@string/detailPhone" />
+
+                    <TextView
+                        android:id="@+id/detailBuyerAddress"
+                        style="@style/detailText"
+                        android:text="@string/detailAddress" />
+
+                    <TextView
+                        android:id="@+id/detailBuyerDate"
+                        style="@style/detailText"
+                        android:text="@string/detailDate" />
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                style="@style/matchParent"
+                card_view:cardCornerRadius="3dp"
+                card_view:cardElevation="4dp"
+                card_view:cardMaxElevation="8dp"
+                card_view:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:id="@+id/detailSellerConatiner"
+                    style="@style/matchParent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/eight">
+
+                    <TextView
+                        android:id="@+id/detailSellerHeading"
+                        style="@style/detailHeading"
+                        android:text="@string/detailSeller" />
+
+                    <TextView
+                        android:id="@+id/detailSellerName"
+                        style="@style/detailText"
+                        android:text="@string/detailName" />
+
+                    <TextView
+                        android:id="@+id/detailSellerPhone"
+                        style="@style/detailText"
+                        android:text="@string/detailPhone" />
+
+                    <TextView
+                        android:id="@+id/detailSellerAddress"
+                        style="@style/detailText"
+                        android:text="@string/detailAddress" />
+
+                    <TextView
+                        android:id="@+id/detailSellerDate"
+                        style="@style/detailText"
+                        android:text="@string/detailDate" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

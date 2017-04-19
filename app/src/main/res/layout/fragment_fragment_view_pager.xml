@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/matchParent"
     tools:context="com.nrs.shelfbeedev.fragments.FragmentViewPager">
 
@@ -7,6 +8,8 @@
 
     <android.support.design.widget.TabLayout
        style="@style/toolbar"
+        app:tabTextColor="@color/gray"
+        app:tabSelectedTextColor="@color/white"
         android:elevation="@dimen/toolbarElevation"
         android:id="@+id/fragmentTabLayout"/>
 

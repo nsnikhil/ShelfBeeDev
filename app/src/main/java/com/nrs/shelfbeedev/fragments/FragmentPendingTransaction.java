@@ -21,6 +21,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.nrs.shelfbeedev.R;
 import com.nrs.shelfbeedev.adapter.AdapterTransaction;
 import com.nrs.shelfbeedev.network.VolleySingleton;
+import com.nrs.shelfbeedev.object.ObjectBookTransaction;
 import com.nrs.shelfbeedev.object.ObjectTransaction;
 
 import org.json.JSONArray;
@@ -39,7 +40,7 @@ public class FragmentPendingTransaction extends android.support.v4.app.Fragment 
     @BindView(R.id.pendingTransactionList) RecyclerView mPendingList;
     @BindView(R.id.pendingTransactionSwipeRefresh) SwipeRefreshLayout mSwipeRefresh;
     private Unbinder mUnbinder;
-    private ArrayList<ObjectTransaction> mList;
+    private ArrayList<ObjectBookTransaction> mList;
     private AdapterTransaction adapterTransaction;
 
 
@@ -75,7 +76,7 @@ public class FragmentPendingTransaction extends android.support.v4.app.Fragment 
 
     private void buildAllTransactionUri(){
         String mHostName = getActivity().getResources().getString(R.string.urlServerLink);
-        String mAllUserLink = getActivity().getResources().getString(R.string.urlTransactionPending);
+        String mAllUserLink = getActivity().getResources().getString(R.string.urlTransactionPendingItems);
         String url = mHostName+mAllUserLink;
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
@@ -93,25 +94,42 @@ public class FragmentPendingTransaction extends android.support.v4.app.Fragment 
             }
         });
         VolleySingleton.getInstance(getActivity()).addToRequestQueue(jsonArrayRequest);
-        ;   }
+    }
 
     private void makeList(JSONArray response) throws JSONException {
         mSwipeRefresh.setRefreshing(false);
         if(response.length()>0){
             for(int i=0;i<response.length();i++){
                 JSONObject object = response.getJSONObject(i);
-                String slId = object.getString("sellerUid");
-                String byId =object.getString("buyerUid");
-                String pyB =object.getString("paybuyer");
-                String pyS =object.getString("payseller");
-                String bTm =object.getString("buytime");
-                String tnS =object.getString("tranStatus");
-                String bkid =object.getString("bid");
-                mList.add(new ObjectTransaction(slId,byId,pyB,pyS,bTm,tnS,bkid));
+                int id = object.getInt("id");
+                String nm = object.getString("Name");
+                String pb = object.getString("Publisher");
+                int cp = object.getInt("CostPrice");
+                int sp = object.getInt("SellingPrice");
+                int ed = object.getInt("Edition");
+                String condt = object.getString("Cndtn");
+                String cat = object.getString("Cateogory");
+                String des = object.getString("Description");
+                String usrd = object.getString("userId");
+                String pic0 = object.getString("pic0");
+                String pic1 =object.getString("pic1");
+                String pic2 =object.getString("pic2");
+                String pic3 =object.getString("pic3");
+                String pic4 =object.getString("pic4");
+                String pic5 =object.getString("pic5");
+                String pic6 =object.getString("pic6");
+                String pic7 = object.getString("pic7");
+                int bookstatus = object.getInt("status");
+                String bId = object.getString("buyerUid");
+                String pBy = object.getString("paybuyer");
+                String pSl = object.getString("payseller");
+                String bTm = object.getString("buytime");
+                String tSts = object.getString("tranStatus");
+                mList.add(new ObjectBookTransaction(id,nm,pb,cp,sp,ed,condt,cat,des,usrd,pic0,pic1,pic2,pic3,pic4,pic5,pic6,pic7,bookstatus,bId,pBy,pSl,bTm,tSts));
             }
-            adapterTransaction = new AdapterTransaction(getActivity(),mList);
-            mPendingList.setAdapter(adapterTransaction);
         }
+        adapterTransaction = new AdapterTransaction(getActivity(),mList);
+        mPendingList.setAdapter(adapterTransaction);
     }
 
 

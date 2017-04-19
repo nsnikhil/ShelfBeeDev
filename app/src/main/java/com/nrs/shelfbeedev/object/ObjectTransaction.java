@@ -6,9 +6,9 @@ public class ObjectTransaction {
 
     private String buyerId,sellerId,payBuyer,paySeller,buytime,transStatus,bookId;
 
-    public ObjectTransaction(String bId,String sId,String pBy,String pSl,String bTm,String tSts,String bkId){
-        buyerId = bId;
+    public ObjectTransaction(String sId,String bId,String pBy,String pSl,String bTm,String tSts,String bkId){
         sellerId = sId;
+        buyerId = bId;
         payBuyer = pBy;
         paySeller = pSl;
         buytime = bTm;
