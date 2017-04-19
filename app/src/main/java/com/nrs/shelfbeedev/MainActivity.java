@@ -31,10 +31,14 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.mainToolbar) Toolbar mMainToolbar;
-    @BindView(R.id.mainContainer) RelativeLayout mMainContainer;
-    @BindView(R.id.drawerTopContainer) RelativeLayout mDrawerTopContainer;
-    @BindView(R.id.mainNoInternet) ImageView mNoInternet;
+    @BindView(R.id.mainToolbar)
+    Toolbar mMainToolbar;
+    @BindView(R.id.mainContainer)
+    RelativeLayout mMainContainer;
+    @BindView(R.id.drawerTopContainer)
+    RelativeLayout mDrawerTopContainer;
+    @BindView(R.id.mainNoInternet)
+    ImageView mNoInternet;
     DrawerLayout mDrawerLayout;
     NavigationView mNavigationView;
     FragmentViewPager mFragmentViewPager;
@@ -184,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void makeSearchDialog(){
+    private void makeSearchDialog() {
         AlertDialog.Builder searchOptions = new AlertDialog.Builder(MainActivity.this);
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_selectable_list_item);
         arrayAdapter.add("Search Books");
@@ -193,11 +197,11 @@ public class MainActivity extends AppCompatActivity {
         searchOptions.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if(which==0){
+                if (which == 0) {
                     Toast.makeText(getApplicationContext(), "Books", Toast.LENGTH_SHORT).show();
-                }else if(which==1){
+                } else if (which == 1) {
                     Toast.makeText(getApplicationContext(), "Request", Toast.LENGTH_SHORT).show();
-                }else if(which==2){
+                } else if (which == 2) {
                     Toast.makeText(getApplicationContext(), "User", Toast.LENGTH_SHORT).show();
                 }
             }
