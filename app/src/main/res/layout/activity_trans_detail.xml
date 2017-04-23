@@ -10,14 +10,16 @@
         layout="@layout/toolbar" />
 
     <Button
-        style="@style/wrapContent"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
         android:id="@+id/detailsDone"
+        style="@style/wrapContent"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
         android:background="@color/colorPrimary"
-        android:text="@string/detailDone" />
+        android:text="@string/detailDone"
+        android:textColor="@color/cardview_light_background" />
 
-    <ScrollView style="@style/matchParent"
+    <ScrollView
+        style="@style/matchParent"
         android:layout_above="@id/detailsDone"
         android:layout_below="@id/detailToolbar">
 
@@ -31,8 +33,106 @@
                 card_view:cardUseCompatPadding="true">
 
                 <ProgressBar
-                    style="@style/progressBar"
-                    android:id="@+id/buyerProgressBar"/>
+                    android:id="@+id/bookProgressBar"
+                    style="@style/progressBar" />
+
+                <LinearLayout
+                    android:id="@+id/detailBookConatiner"
+                    style="@style/matchParent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/eight">
+
+                    <TextView
+                        android:id="@+id/detailBookHeading"
+                        style="@style/detailHeading"
+                        android:text="@string/detailBook" />
+
+                    <TextView
+                        android:id="@+id/detailBookName"
+                        style="@style/detailText"
+                        android:text="@string/detailBookName" />
+
+                    <TextView
+                        android:id="@+id/detailBookPublisher"
+                        style="@style/detailText"
+                        android:text="@string/detailBookPublisher" />
+
+                    <TextView
+                        android:id="@+id/detailBookPaySeller"
+                        style="@style/detailText"
+                        android:text="@string/detailBookPaySeller" />
+
+                    <TextView
+                        android:id="@+id/detailBookPayBuyer"
+                        style="@style/detailText"
+                        android:text="@string/detailBookPayBuyer" />
+
+                    <TextView
+                        android:id="@+id/detailBookEdtn"
+                        style="@style/detailText"
+                        android:text="@string/detailBookEdtn" />
+
+                    <TextView
+                        android:id="@+id/detailBookCndtn"
+                        style="@style/detailText"
+                        android:text="@string/detailBookCndtn" />
+
+                    <TextView
+                        android:id="@+id/detailBookCate"
+                        style="@style/detailText"
+                        android:text="@string/detailBookCate" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                style="@style/matchParent"
+                card_view:cardCornerRadius="1dp"
+                card_view:cardElevation="2dp"
+                card_view:cardMaxElevation="4dp"
+                card_view:cardUseCompatPadding="true">
+
+                <ProgressBar
+                    android:id="@+id/dateProgressBar"
+                    style="@style/progressBar" />
+
+                <LinearLayout
+                    android:id="@+id/detailDateConatiner"
+                    style="@style/matchParent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/eight">
+
+                <TextView
+                    android:id="@+id/detailDateHeading"
+                    style="@style/detailHeading"
+                    android:text="@string/detailDate" />
+
+                <TextView
+                    android:id="@+id/detailPurchaseDate"
+                    style="@style/detailText"
+                    android:text="@string/detailPurchasedOn" />
+
+                <TextView
+                    android:id="@+id/detailDeliveryDate"
+                    style="@style/detailText"
+                    android:text="@string/detailDeliveryDate" />
+
+                </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                style="@style/matchParent"
+                card_view:cardCornerRadius="1dp"
+                card_view:cardElevation="2dp"
+                card_view:cardMaxElevation="4dp"
+                card_view:cardUseCompatPadding="true">
+
+                <ProgressBar
+                    android:id="@+id/buyerProgressBar"
+                    style="@style/progressBar" />
 
                 <LinearLayout
                     android:id="@+id/detailBuyerConatiner"
@@ -60,11 +160,6 @@
                         style="@style/detailText"
                         android:text="@string/detailAddress" />
 
-                    <TextView
-                        android:id="@+id/detailBuyerDate"
-                        style="@style/detailText"
-                        android:text="@string/detailDate" />
-
                 </LinearLayout>
 
 
@@ -78,8 +173,8 @@
                 card_view:cardUseCompatPadding="true">
 
                 <ProgressBar
-                    style="@style/progressBar"
-                    android:id="@+id/sellerProgressBar"/>
+                    android:id="@+id/sellerProgressBar"
+                    style="@style/progressBar" />
 
                 <LinearLayout
                     android:id="@+id/detailSellerConatiner"
@@ -106,11 +201,6 @@
                         android:id="@+id/detailSellerAddress"
                         style="@style/detailText"
                         android:text="@string/detailAddress" />
-
-                    <TextView
-                        android:id="@+id/detailSellerDate"
-                        style="@style/detailText"
-                        android:text="@string/detailDate" />
 
                 </LinearLayout>
 

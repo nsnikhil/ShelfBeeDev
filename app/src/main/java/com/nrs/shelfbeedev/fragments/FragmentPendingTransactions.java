@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -44,6 +45,7 @@ public class FragmentPendingTransactions extends android.support.v4.app.Fragment
     @BindView(R.id.allTransactionSwipeRefresh)
     SwipeRefreshLayout mSwipeRefresh;
     private Unbinder mUnbinder;
+    @BindView(R.id.emptyImage) ImageView mEmptyImage;
     private ArrayList<ObjectBookTransaction> mList;
     private AdapterTransaction adapterTransaction;
 
@@ -107,6 +109,7 @@ public class FragmentPendingTransactions extends android.support.v4.app.Fragment
         mSwipeRefresh.setRefreshing(false);
         if (response.length() > 0) {
             for (int i = 0; i < response.length(); i++) {
+                mEmptyImage.setVisibility(View.GONE);
                 JSONObject object = response.getJSONObject(i);
                 int id = object.getInt("id");
                 String nm = object.getString("Name");
@@ -134,6 +137,8 @@ public class FragmentPendingTransactions extends android.support.v4.app.Fragment
                 String tSts = object.getString("tranStatus");
                 mList.add(new ObjectBookTransaction(id, nm, pb, cp, sp, ed, condt, cat, des, usrd, pic0, pic1, pic2, pic3, pic4, pic5, pic6, pic7, bookstatus, bId, pBy, pSl, bTm, tSts));
             }
+        }else {
+            mEmptyImage.setVisibility(View.VISIBLE);
         }
         adapterTransaction = new AdapterTransaction(getActivity(), mList);
         mAllTransactions.setAdapter(adapterTransaction);

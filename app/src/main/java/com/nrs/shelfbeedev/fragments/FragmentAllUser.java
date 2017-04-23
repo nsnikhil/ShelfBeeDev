@@ -13,7 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.nrs.shelfbeedev.R;
-import com.nrs.shelfbeedev.adapter.AdapterList;
+import com.nrs.shelfbeedev.adapter.AdapterUserList;
 import com.nrs.shelfbeedev.network.VolleySingleton;
 import com.nrs.shelfbeedev.object.ObjectUser;
 
@@ -34,7 +34,7 @@ public class FragmentAllUser extends android.support.v4.app.Fragment {
     ListView mAllUserList;
     @BindView(R.id.allUserSwipeRefresh)
     SwipeRefreshLayout mSwipeRefresh;
-    AdapterList mAdapterList;
+    AdapterUserList mAdapterList;
     ArrayList<ObjectUser> mUserList;
     private Unbinder mUnbinder;
 
@@ -103,7 +103,7 @@ public class FragmentAllUser extends android.support.v4.app.Fragment {
                 mUserList.add(new ObjectUser(uid, nm, phn, adr, fk, bst));
             }
         }
-        mAdapterList = new AdapterList(getActivity(), mUserList);
+        mAdapterList = new AdapterUserList(getActivity(), mUserList);
         mAllUserList.setAdapter(mAdapterList);
     }
 

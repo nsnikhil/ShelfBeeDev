@@ -21,7 +21,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".TransDetailActivity" />
-        <activity android:name=".fragments.FragmentAllTransactions"></activity>
+        <activity android:name=".fragments.FragmentAllTransactions" />
+        <activity android:name=".SearchActivity"></activity>
     </application>
 
 </manifest>

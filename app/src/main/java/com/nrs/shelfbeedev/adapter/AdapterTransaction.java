@@ -30,6 +30,7 @@ public class AdapterTransaction extends BaseAdapter {
         mList = list;
     }
 
+
     @Override
     public int getCount() {
         return mList.size();

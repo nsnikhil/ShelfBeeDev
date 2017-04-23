@@ -199,12 +199,16 @@ public class MainActivity extends AppCompatActivity {
         searchOptions.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                Intent search= new Intent(MainActivity.this,SearchActivity.class);
                 if (which == 0) {
-                    Toast.makeText(getApplicationContext(), "Books", Toast.LENGTH_SHORT).show();
+                    search.putExtra(getResources().getString(R.string.intentSearchUrl),getResources().getString(R.string.urlSearchBooks));
+                    startActivity(search);
                 } else if (which == 1) {
-                    Toast.makeText(getApplicationContext(), "Request", Toast.LENGTH_SHORT).show();
+                    search.putExtra(getResources().getString(R.string.intentSearchUrl),getResources().getString(R.string.urlSearchRequests));
+                    startActivity(search);
                 } else if (which == 2) {
-                    Toast.makeText(getApplicationContext(), "User", Toast.LENGTH_SHORT).show();
+                    search.putExtra(getResources().getString(R.string.intentSearchUrl),getResources().getString(R.string.urlSearchUsers));
+                    startActivity(search);
                 }
             }
         });

@@ -24,13 +24,23 @@
     <!-- -->
 
     <!-- Details-->
-    <string name="detailBuyer">Buyer</string>
-    <string name="detailSeller">Seller</string>
+    <string name="detailBuyer">Buyer Info</string>
+    <string name="detailSeller">Seller Info</string>
+    <string name="detailBook">Book Details</string>
+    <string name="detailDate">Date</string>
     <string name="detailDone">Delivered</string>
+    <string name="detailPurchasedOn">Purchased On</string>
+    <string name="detailDeliveryDate">Delivery Date</string>
     <string name="detailName">Name</string>
     <string name="detailPhone">Phone</string>
     <string name="detailAddress">Address</string>
-    <string name="detailDate">Date</string>
+    <string name="detailBookName">Book Name</string>
+    <string name="detailBookPublisher">Book Publisher</string>
+    <string name="detailBookPaySeller">Pay Seller</string>
+    <string name="detailBookPayBuyer">Take from Buyer</string>
+    <string name="detailBookEdtn">Book Edition</string>
+    <string name="detailBookCndtn">Book Condition</string>
+    <string name="detailBookCate">Book Category</string>
     <!-- -->
 
     <!-- Urls-->
@@ -42,6 +52,14 @@
     <string name="urlTransactionPendingItems">booktrade/transactionPendingItems.php</string>
     <string name="urlUserSingle">booktrade/userQueryAll.php</string>
     <string name="urlTransactionDone">booktrade/transactionUpdateStatus.php</string>
+    <string name="urlSingleBookDetails">booktrade/bookSingle.php</string>
+    <string name="urlSearchBooks">booktrade/searchBooks.php</string>
+    <string name="urlSearchRequests">booktrade/searchRequest.php</string>
+    <string name="urlSearchUsers">booktrade/searchUser.php</string>
+    <!-- -->
+
+    <!-- IntentExtra-->
+    <string name="intentSearchUrl">intnsrchurl</string>
     <!-- -->
 
 </resources>

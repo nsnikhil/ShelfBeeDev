@@ -13,6 +13,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nrs.shelfbeedev.R;
+import com.nrs.shelfbeedev.object.ObjectBook;
+import com.nrs.shelfbeedev.object.ObjectRequest;
 import com.nrs.shelfbeedev.object.ObjectUser;
 
 import java.util.ArrayList;
@@ -21,17 +23,37 @@ import java.util.Random;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AdapterList extends BaseAdapter {
+public class AdapterUserList extends BaseAdapter {
 
     private static final String[] colorArray = {"#D32F2F", "#C2185B", "#7B1FA2", "#512DA8", "#303F9F", "#1976D2", "#0288D1",
             "#0097A7", "#00796B", "#388E3C", "#689F38", "#AFB42B", "#FBC02D", "#FFA000", "#F57C00", "#E64A19"};
     ArrayList<ObjectUser> mList;
+    ArrayList<ObjectRequest> mRList;
+    ArrayList<ObjectBook> mBList;
     Context mContext;
+    private int key = 0;
+    private int type;
+    private String akey;
     private Random r = new Random();
 
-    public AdapterList(Context context, ArrayList<ObjectUser> list) {
+    public AdapterUserList(Context context, ArrayList<ObjectUser> list) {
         mContext = context;
         mList = list;
+        type = 1;
+    }
+
+    public AdapterUserList(Context context, ArrayList<ObjectRequest> list,int k) {
+        mContext = context;
+        mRList = list;
+        key = k;
+        type = 2;
+    }
+
+    public AdapterUserList(Context context, ArrayList<ObjectBook> list,String k) {
+        mContext = context;
+        mBList = list;
+        akey = k;
+        type = 3;
     }
 
     private int getRandom() {
@@ -53,12 +75,26 @@ public class AdapterList extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mList.size();
+        if(type==1){
+            return mList.size();
+        }else if(type==2){
+            return mRList.size();
+        }else if(type==3){
+            return mBList.size();
+        }
+        return 0;
     }
 
     @Override
     public Object getItem(int position) {
-        return mList.get(position);
+        if(type==1){
+            return mList.get(position);
+        }else if(type==2){
+            return mRList.get(position);
+        }else if(type==3){
+            return mBList.get(position);
+        }
+        return null;
     }
 
     @Override
@@ -76,18 +112,30 @@ public class AdapterList extends BaseAdapter {
         } else {
             myViewHolder = (MyViewHolder) convertView.getTag();
         }
-        ObjectUser user = mList.get(position);
-        myViewHolder.mName.setText(user.getName());
-        myViewHolder.mHeading.setText(String.valueOf(mList.get(position).getName().toUpperCase().charAt(0)));
-        myViewHolder.mConatiner.setBackgroundTintList(stateList());
+        setView(myViewHolder,position);
         return convertView;
     }
 
+    private void setView(MyViewHolder myViewHolder,int position){
+        myViewHolder.mConatiner.setBackgroundTintList(stateList());
+        if(type==1){
+            ObjectUser user = mList.get(position);
+            myViewHolder.mName.setText(user.getName());
+            myViewHolder.mHeading.setText(String.valueOf(mList.get(position).getName().toUpperCase().charAt(0)));
+        }else if(type==2){
+            ObjectRequest request = mRList.get(position);
+            myViewHolder.mName.setText(request.getName());
+            myViewHolder.mHeading.setText(String.valueOf(mRList.get(position).getName().toUpperCase().charAt(0)));
+        }else if(type==3){
+            ObjectBook book = mBList.get(position);
+            myViewHolder.mName.setText(book.getName());
+            myViewHolder.mHeading.setText(String.valueOf(mBList.get(position).getName().toUpperCase().charAt(0)));
+        }
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.itemHeading)
-        TextView mHeading;
-        @BindView(R.id.itemName)
-        TextView mName;
+        @BindView(R.id.itemHeading) TextView mHeading;
+        @BindView(R.id.itemName) TextView mName;
         @BindView(R.id.itemHeadingContainer)
         RelativeLayout mConatiner;
 

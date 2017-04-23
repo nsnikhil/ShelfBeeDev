@@ -4,6 +4,12 @@
    style="@style/matchParent"
     tools:context="com.nrs.shelfbeedev.fragments.FragmentAllTransactions">
 
+    <ImageView
+        android:id="@+id/emptyImage"
+        style="@style/errorImage"
+        android:src="@drawable/nopending"
+        android:contentDescription="@string/imageDescription" />
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/allTransactionSwipeRefresh"
         style="@style/matchParent">

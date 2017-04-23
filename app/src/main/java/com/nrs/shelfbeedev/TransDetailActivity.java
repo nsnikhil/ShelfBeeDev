@@ -34,30 +34,30 @@ import butterknife.ButterKnife;
 
 public class TransDetailActivity extends AppCompatActivity {
 
-    @BindView(R.id.detailToolbar)
-    Toolbar mdetailsToolBar;
-    @BindView(R.id.detailBuyerName)
-    TextView mBuyerName;
-    @BindView(R.id.detailBuyerPhone)
-    TextView mBuyerPhone;
-    @BindView(R.id.detailBuyerAddress)
-    TextView mBuyerAddress;
-    @BindView(R.id.detailBuyerDate)
-    TextView mBuyerDate;
-    @BindView(R.id.detailSellerName)
-    TextView mSellerrName;
-    @BindView(R.id.detailSellerPhone)
-    TextView mSellerPhone;
-    @BindView(R.id.detailSellerAddress)
-    TextView mSellerAddress;
-    @BindView(R.id.detailSellerDate)
-    TextView mSellerDate;
-    @BindView(R.id.detailsDone)
-    Button mDone;
-    @BindView(R.id.buyerProgressBar)
-    ProgressBar mBuyerProgressBar;
-    @BindView(R.id.sellerProgressBar)
-    ProgressBar mSellerProgressBar;
+    @BindView(R.id.detailToolbar) Toolbar mdetailsToolBar;
+    @BindView(R.id.detailBuyerName) TextView mBuyerName;
+    @BindView(R.id.detailBuyerPhone) TextView mBuyerPhone;
+    @BindView(R.id.detailBuyerAddress) TextView mBuyerAddress;
+    @BindView(R.id.detailSellerName) TextView mSellerrName;
+    @BindView(R.id.detailSellerPhone) TextView mSellerPhone;
+    @BindView(R.id.detailSellerAddress) TextView mSellerAddress;
+    @BindView(R.id.detailsDone) Button mDone;
+    @BindView(R.id.buyerProgressBar) ProgressBar mBuyerProgressBar;
+    @BindView(R.id.sellerProgressBar) ProgressBar mSellerProgressBar;
+    @BindView(R.id.bookProgressBar) ProgressBar mBookProgressBar;
+    @BindView(R.id.dateProgressBar) ProgressBar mDateProgressBar;
+
+    @BindView(R.id.detailBookName) TextView mBookName;
+    @BindView(R.id.detailBookPublisher) TextView mBookPublisher;
+    @BindView(R.id.detailBookPayBuyer) TextView mBookPayBuyer;
+    @BindView(R.id.detailBookPaySeller) TextView mBookPaySeller;
+    @BindView(R.id.detailBookEdtn) TextView mBookEdtn;
+    @BindView(R.id.detailBookCndtn) TextView mBookCndtn;
+    @BindView(R.id.detailBookCate) TextView mBookCate;
+
+    @BindView(R.id.detailPurchaseDate) TextView mPurchaseDate;
+    @BindView(R.id.detailDeliveryDate) TextView mDeliveryDate;
+
     ObjectBookTransaction mObjectBookTransaction = null;
 
     @Override
@@ -70,29 +70,30 @@ public class TransDetailActivity extends AppCompatActivity {
             mObjectBookTransaction = (ObjectBookTransaction) getIntent().getExtras().getSerializable(getResources().getString(R.string.bundleSerialKey));
             getUserData(mObjectBookTransaction.getBuyerId().trim(), 0);
             getUserData(mObjectBookTransaction.getUserSellerId().trim(), 1);
-            mSellerDate.setText("Sold on : " + makeDate(mObjectBookTransaction.getBuytime()));
-            mBuyerDate.setText("Delivery Date : " + makeDeliveryDate(mObjectBookTransaction.getBuytime()));
+            getBookData(mObjectBookTransaction.getBookid());
+            mDateProgressBar.setVisibility(View.GONE);
+            mPurchaseDate.setText("Purchase Date : "+makeDate(mObjectBookTransaction.getBuytime(),0));
             if (Integer.parseInt(mObjectBookTransaction.getTransStatus()) == 1) {
                 mDone.setEnabled(false);
                 mDone.setText("Book Delivered");
+                mDeliveryDate.setText(makeDate(mObjectBookTransaction.getBuytime(),7));
+                mDeliveryDate.setText("Book Delivered");
+            }else {
+                mDeliveryDate.setText("Delivery Date : "+makeDate(mObjectBookTransaction.getBuytime(),7));
             }
         }
     }
 
-    private String makeDate(String time) {
+    private String makeDate(String time,int add) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(Long.parseLong(time));
+        calendar.add(Calendar.DATE,add);
         return formatter.format(calendar.getTime());
     }
 
-    private String makeDeliveryDate(String time) {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(Long.parseLong(time));
-        calendar.add(Calendar.DATE, 7);
-        return formatter.format(calendar.getTime());
-    }
+
+
 
     private String buildUserUri(String userId) {
         String mHostName = getResources().getString(R.string.urlServerLink);
@@ -100,6 +101,65 @@ public class TransDetailActivity extends AppCompatActivity {
         String url = mHostName + mAllUserLink;
         String userIdQuery = "uid";
         return Uri.parse(url).buildUpon().appendQueryParameter(userIdQuery, userId).toString();
+    }
+
+    private String buildBookUri(int bkId) {
+        String mHostName = getResources().getString(R.string.urlServerLink);
+        String mAllUserLink = getResources().getString(R.string.urlSingleBookDetails);
+        String url = mHostName + mAllUserLink;
+        String bookdIdQuery = "bid";
+        return Uri.parse(url).buildUpon().appendQueryParameter(bookdIdQuery, String.valueOf(bkId)).toString();
+    }
+
+    private void getBookData(int bkid){
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, buildBookUri(bkid), null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    setBookData(response);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        VolleySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsonArrayRequest);
+    }
+
+    private void setBookData(JSONArray response) throws JSONException {
+        mBookProgressBar.setVisibility(View.GONE);
+        if(response.length()>0){
+            for (int i = 0; i < response.length(); i++) {
+                JSONObject object = response.getJSONObject(i);
+                mBookName.setText("Book Name : "+object.getString("Name"));
+                mBookPublisher.setText("Book Publisher : "+object.getString("Publisher"));
+                mBookPaySeller.setText("Pay to seller : "+"र "+(object.getInt("SellingPrice")-compute(object.getInt("SellingPrice"))));
+                mBookPayBuyer.setText("Recieve from buyer : "+"र "+(object.getInt("SellingPrice")+compute(object.getInt("SellingPrice"))));
+                mBookEdtn.setText("Book Edition : "+object.getInt("Edition"));
+                mBookCndtn.setText("Book Condition : "+object.getString("Cndtn"));
+                mBookCate.setText("Book Category : "+object.getString("Cateogory"));
+            }
+        }
+    }
+
+    private double compute(int price) {
+        if (price < 100) {
+            return 7;
+        }
+        if (price >= 100 && price < 300) {
+            return ((double) 8 / 100) * price;
+        }
+        if (price >= 300 && price <= 999) {
+            return ((double) 6 / 100) * price;
+        }
+        if (price > 999) {
+            return ((double) 4 / 100) * price;
+        }
+        return 0;
     }
 
     private void getUserData(String userId, final int key) {
