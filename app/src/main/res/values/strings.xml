@@ -9,6 +9,8 @@
     <string name="retry">Retry</string>
     <string name="imageDescription">Background</string>
     <string name="imageErrorDescription">Error</string>
+    <string name="alluploads">All Uploads</string>
+    <string name="allpurchases">All Purchases</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -26,22 +28,34 @@
     <!-- Details-->
     <string name="detailBuyer">Buyer Info</string>
     <string name="detailSeller">Seller Info</string>
+    <string name="detailRequestInfo">Request Info</string>
+    <string name="detailBookInfo">Book Info</string>
+    <string name="detailUserInfo">User Info</string>
+    <string name="detailRequestid">Request id</string>
     <string name="detailBook">Book Details</string>
     <string name="detailDate">Date</string>
     <string name="detailDone">Delivered</string>
     <string name="detailPurchasedOn">Purchased On</string>
     <string name="detailDeliveryDate">Delivery Date</string>
+    <string name="detailUserId">Id</string>
     <string name="detailName">Name</string>
     <string name="detailPhone">Phone</string>
     <string name="detailAddress">Address</string>
+    <string name="detailFkey">FireBase Key</string>
+    <string name="detailBanStatus">Ban Status</string>
     <string name="detailBookName">Book Name</string>
     <string name="detailBookPublisher">Book Publisher</string>
+    <string name="detailBookCp">Cost price</string>
+    <string name="detailBookSp">Selling price</string>
+    <string name="detailBookId">Book Id</string>
     <string name="detailBookPaySeller">Pay Seller</string>
     <string name="detailBookPayBuyer">Take from Buyer</string>
     <string name="detailBookEdtn">Book Edition</string>
     <string name="detailBookCndtn">Book Condition</string>
     <string name="detailBookCate">Book Category</string>
+    <string name="detailBookDes">Book Description</string>
     <!-- -->
+
 
     <!-- Urls-->
     <string name="urlServerLink">http://ec2-35-154-208-1.ap-south-1.compute.amazonaws.com/</string>
@@ -56,10 +70,17 @@
     <string name="urlSearchBooks">booktrade/searchBooks.php</string>
     <string name="urlSearchRequests">booktrade/searchRequest.php</string>
     <string name="urlSearchUsers">booktrade/searchUser.php</string>
+
+    <string name="urlUserQueryUid">booktrade/userQueryAll.php</string>
+    <string name="urlRequestQueryRid">booktrade/requestQueryRid.php</string>
+    <string name="urlBookQueryBid">booktrade/bookQueryBid.php</string>
     <!-- -->
 
     <!-- IntentExtra-->
     <string name="intentSearchUrl">intnsrchurl</string>
+    <string name="intentUserId">intenuseid</string>
+    <string name="intentBookId">intenbkid</string>
+    <string name="intentRequestId">interqid</string>
     <!-- -->
 
 </resources>

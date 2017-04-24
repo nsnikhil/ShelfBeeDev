@@ -1,0 +1,49 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    style="@style/matchParent"
+    tools:context="com.nrs.shelfbeedev.fragments.RequestDetailFragment">
+
+    <android.support.v7.widget.CardView
+        style="@style/matchParent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="1dp"
+        card_view:cardElevation="2dp"
+        card_view:cardMaxElevation="4dp"
+        card_view:cardUseCompatPadding="true">
+
+        <ProgressBar
+            android:id="@+id/requestInfoProgressBar"
+            style="@style/progressBar" />
+
+        <LinearLayout
+            android:id="@+id/detailBuyerConatiner"
+            style="@style/matchParent"
+            android:orientation="vertical"
+            android:padding="@dimen/eight">
+
+            <TextView
+                android:id="@+id/userInfoHeding"
+                style="@style/detailHeading"
+                android:text="@string/detailRequestInfo" />
+
+            <TextView
+                android:id="@+id/requestInfoName"
+                style="@style/detailText"
+                android:text="@string/detailName" />
+
+            <TextView
+                android:id="@+id/requestInfoPublisher"
+                style="@style/detailText"
+                android:text="@string/detailBookPublisher" />
+
+            <TextView
+                android:id="@+id/requestInfoRequestId"
+                style="@style/detailText"
+                android:text="@string/detailRequestid" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

@@ -20,9 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TransDetailActivity" />
-        <activity android:name=".fragments.FragmentAllTransactions" />
-        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".TransDetailActivity"
+            android:label="Transaction"/>
+        <activity android:name=".SearchActivity"
+            android:label="Search"/>
+        <activity android:name=".DetailConatinerActivity"
+            android:label="Details"/>
     </application>
 
 </manifest>

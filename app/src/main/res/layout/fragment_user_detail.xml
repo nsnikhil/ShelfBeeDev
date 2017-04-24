@@ -1,0 +1,91 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/wrapContent"
+    tools:context="com.nrs.shelfbeedev.fragments.UserDetailFragment">
+
+    <android.support.v7.widget.CardView
+        style="@style/matchParent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="1dp"
+        card_view:cardElevation="2dp"
+        card_view:cardMaxElevation="4dp"
+        card_view:cardUseCompatPadding="true">
+
+        <ProgressBar
+            android:id="@+id/userInfoProgressBar"
+            style="@style/progressBar" />
+
+        <LinearLayout
+            android:id="@+id/detailBuyerConatiner"
+            style="@style/matchParent"
+            android:orientation="vertical"
+            android:padding="@dimen/eight">
+
+            <TextView
+                android:id="@+id/userInfoHeding"
+                style="@style/detailHeading"
+                android:text="@string/detailUserInfo" />
+
+            <TextView
+                android:id="@+id/userInfoId"
+                style="@style/detailText"
+                android:text="@string/detailUserId" />
+
+            <TextView
+                android:id="@+id/userInfoName"
+                style="@style/detailText"
+                android:text="@string/detailName" />
+
+            <TextView
+                android:id="@+id/userInfoPhone"
+                style="@style/detailText"
+                android:text="@string/detailPhone" />
+
+            <TextView
+                android:id="@+id/userInfoAddress"
+                style="@style/detailText"
+                android:text="@string/detailAddress" />
+
+            <TextView
+                android:id="@+id/userInfoFkey"
+                style="@style/detailText"
+                android:text="@string/detailFkey" />
+
+            <TextView
+                android:id="@+id/userInfoBan"
+                style="@style/detailText"
+                android:text="@string/detailBanStatus" />
+
+            <LinearLayout
+                style="@style/horizontalLinearLayout"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/sixteen"
+                android:layout_height="wrap_content">
+
+                <Button
+                    style="@style/wrapContent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:id="@+id/userInfoUploads"
+                    android:text="@string/alluploads"
+                    android:background="@android:color/transparent"/>
+
+                <Button
+                    style="@style/wrapContent"
+                    android:layout_width="0dp"
+                    android:id="@+id/userInfoPurchases"
+                    android:layout_weight="1"
+                    android:text="@string/allpurchases"
+                    android:background="@android:color/transparent"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </android.support.v7.widget.CardView>
+
+
+</RelativeLayout>

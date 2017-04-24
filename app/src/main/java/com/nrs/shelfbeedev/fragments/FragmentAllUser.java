@@ -1,17 +1,20 @@
 package com.nrs.shelfbeedev.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.nrs.shelfbeedev.DetailConatinerActivity;
 import com.nrs.shelfbeedev.R;
 import com.nrs.shelfbeedev.adapter.AdapterUserList;
 import com.nrs.shelfbeedev.network.VolleySingleton;
@@ -62,6 +65,15 @@ public class FragmentAllUser extends android.support.v4.app.Fragment {
                 mAllUserList.setAdapter(null);
                 mUserList.clear();
                 buildAllUserUri();
+            }
+        });
+        mAllUserList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ObjectUser objectUser = (ObjectUser) parent.getItemAtPosition(position);
+                Intent intent = new Intent(getActivity(), DetailConatinerActivity.class);
+                intent.putExtra(getActivity().getResources().getString(R.string.intentUserId),objectUser.getUid());
+                startActivity(intent);
             }
         });
     }

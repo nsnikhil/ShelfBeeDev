@@ -1,0 +1,80 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    style="@style/matchParent"
+    tools:context="com.nrs.shelfbeedev.fragments.BookDetailFragment">
+
+
+    <android.support.v7.widget.CardView
+        style="@style/matchParent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="1dp"
+        card_view:cardElevation="2dp"
+        card_view:cardMaxElevation="4dp"
+        card_view:cardUseCompatPadding="true">
+
+        <ProgressBar
+            android:id="@+id/bookInfoProgressBar"
+            style="@style/progressBar" />
+
+        <LinearLayout
+            android:id="@+id/detailBuyerConatiner"
+            style="@style/matchParent"
+            android:orientation="vertical"
+            android:padding="@dimen/eight">
+
+            <TextView
+                android:id="@+id/userInfoHeding"
+                style="@style/detailHeading"
+                android:text="@string/detailBookInfo" />
+
+            <TextView
+                android:id="@+id/bookInfoBId"
+                style="@style/detailText"
+                android:text="@string/detailBookId" />
+
+            <TextView
+                android:id="@+id/bookInfoName"
+                style="@style/detailText"
+                android:text="@string/detailBookName" />
+
+            <TextView
+                android:id="@+id/bookInfoPublisher"
+                style="@style/detailText"
+                android:text="@string/detailBookPublisher" />
+
+            <TextView
+                android:id="@+id/bookInfoCp"
+                style="@style/detailText"
+                android:text="@string/detailBookCp" />
+
+            <TextView
+                android:id="@+id/bookInfoSp"
+                style="@style/detailText"
+                android:text="@string/detailBookSp" />
+
+            <TextView
+                android:id="@+id/bookInfoEdtn"
+                style="@style/detailText"
+                android:text="@string/detailBookEdtn" />
+
+            <TextView
+                android:id="@+id/bookInfoCondition"
+                style="@style/detailText"
+                android:text="@string/detailBookCndtn" />
+
+            <TextView
+                android:id="@+id/bookInfoCategory"
+                style="@style/detailText"
+                android:text="@string/detailBookCate" />
+
+            <TextView
+                android:id="@+id/bookInfoDescription"
+                style="@style/detailText"
+                android:text="@string/detailBookDes" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

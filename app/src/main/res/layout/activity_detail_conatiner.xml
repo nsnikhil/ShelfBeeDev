@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/matchParent"
+    tools:context="com.nrs.shelfbeedev.DetailConatinerActivity">
+
+    <include
+        android:id="@+id/detailContainerToolbar"
+        layout="@layout/toolbar" />
+
+    <ScrollView
+        style="@style/matchParent"
+        android:layout_below="@id/detailContainerToolbar">
+
+        <LinearLayout style="@style/verticalLinearLayout">
+
+            <RelativeLayout
+                android:id="@+id/containerOther"
+                style="@style/wrapContent" />
+
+            <RelativeLayout
+                android:id="@+id/containerBookOther"
+                style="@style/wrapContent" />
+
+            <RelativeLayout
+                android:id="@+id/containerUser"
+                style="@style/wrapContent" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

@@ -1,5 +1,6 @@
 package com.nrs.shelfbeedev;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -79,6 +81,12 @@ public class SearchActivity extends AppCompatActivity {
 
             }
         });
+        mSearchList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                clickEvent(parent,position);
+            }
+        });
     }
 
     private String buildSearchUri(String search){
@@ -98,8 +106,30 @@ public class SearchActivity extends AppCompatActivity {
         }
     }
 
+    private void clickEvent(AdapterView<?> parent, int position){
+        Intent intent = new Intent(SearchActivity.this, DetailConatinerActivity.class);
+
+        if(getIntent().getExtras().getString(getResources().getString(R.string.intentSearchUrl),NULL_VALUE).equalsIgnoreCase(getResources().getString(R.string.urlSearchBooks))){
+
+            ObjectBook book = (ObjectBook) parent.getItemAtPosition(position);
+            intent.putExtra(getResources().getString(R.string.intentUserId),book.getUserId());
+            intent.putExtra(getResources().getString(R.string.intentBookId),book.getBid());
+
+        }else if(getIntent().getExtras().getString(getResources().getString(R.string.intentSearchUrl),NULL_VALUE).equalsIgnoreCase(getResources().getString(R.string.urlSearchRequests))){
+
+            ObjectRequest request = (ObjectRequest) parent.getItemAtPosition(position);
+            intent.putExtra(getResources().getString(R.string.intentUserId),request.getUserId());
+            intent.putExtra(getResources().getString(R.string.intentRequestId),request.getRequestId());
+
+        }else if(getIntent().getExtras().getString(getResources().getString(R.string.intentSearchUrl),NULL_VALUE).equalsIgnoreCase(getResources().getString(R.string.urlSearchUsers))){
+
+            ObjectUser user = (ObjectUser) parent.getItemAtPosition(position);
+            intent.putExtra(getResources().getString(R.string.intentUserId),user.getUid());
+        }
+        startActivity(intent);
+    }
+
     private void makeBookList(JSONArray response) throws JSONException {
-        Toast.makeText(getApplicationContext(),"booklist",Toast.LENGTH_SHORT).show();
         if(response.length()>0){
             mSearchImage.setVisibility(View.GONE);
             for(int i=0;i<response.length();i++){
@@ -134,7 +164,6 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void makeRequestList(JSONArray response) throws JSONException {
-        Toast.makeText(getApplicationContext(),"requestlist",Toast.LENGTH_SHORT).show();
         if(response.length()>0){
             mSearchImage.setVisibility(View.GONE);
             for(int i=0;i<response.length();i++){
@@ -153,7 +182,6 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void makeUserList(JSONArray response) throws JSONException {
-        Toast.makeText(getApplicationContext(),"userlist",Toast.LENGTH_SHORT).show();
         if(response.length()>0){
             mSearchImage.setVisibility(View.GONE);
             for(int i=0;i<response.length();i++){
