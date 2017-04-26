@@ -42,6 +42,7 @@ public class TransDetailActivity extends AppCompatActivity {
     @BindView(R.id.detailSellerPhone) TextView mSellerPhone;
     @BindView(R.id.detailSellerAddress) TextView mSellerAddress;
     @BindView(R.id.detailsDone) Button mDone;
+    @BindView(R.id.detailsCancel) Button mCancel;
     @BindView(R.id.buyerProgressBar) ProgressBar mBuyerProgressBar;
     @BindView(R.id.sellerProgressBar) ProgressBar mSellerProgressBar;
     @BindView(R.id.bookProgressBar) ProgressBar mBookProgressBar;
@@ -73,7 +74,9 @@ public class TransDetailActivity extends AppCompatActivity {
             getBookData(mObjectBookTransaction.getBookid());
             mDateProgressBar.setVisibility(View.GONE);
             mPurchaseDate.setText("Purchase Date : "+makeDate(mObjectBookTransaction.getBuytime(),0));
-            if (Integer.parseInt(mObjectBookTransaction.getTransStatus()) == 1) {
+            if(mObjectBookTransaction.getTransStatus().equalsIgnoreCase("0")){
+                mCancel.setVisibility(View.VISIBLE);
+            }if (Integer.parseInt(mObjectBookTransaction.getTransStatus()) == 1) {
                 mDone.setEnabled(false);
                 mDone.setText("Book Delivered");
                 mDeliveryDate.setText(makeDate(mObjectBookTransaction.getBuytime(),7));
@@ -91,9 +94,6 @@ public class TransDetailActivity extends AppCompatActivity {
         calendar.add(Calendar.DATE,add);
         return formatter.format(calendar.getTime());
     }
-
-
-
 
     private String buildUserUri(String userId) {
         String mHostName = getResources().getString(R.string.urlServerLink);
@@ -259,22 +259,88 @@ public class TransDetailActivity extends AppCompatActivity {
         mDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder done = new AlertDialog.Builder(TransDetailActivity.this);
-                done.setMessage("Is the book delivered successfully");
-                done.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        makeUpdateStatusId();
-                    }
-                });
-                done.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-                done.create().show();
+                buildButtonDialog("Is the book delivered successfully",0);
             }
         });
+        mCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               buildButtonDialog("Do you want to cancel this order",1);
+            }
+        });
+    }
+
+    private void buildButtonDialog(String message, final int key){
+        AlertDialog.Builder done = new AlertDialog.Builder(TransDetailActivity.this);
+        done.setMessage(message);
+        done.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(key==0){
+                    makeUpdateStatusId();
+                }if(key==1){
+                    int bookId = mObjectBookTransaction.getBookid();
+                    cancelPurchase(bookId);
+                    moveToAvailable(bookId);
+                }
+            }
+        });
+        done.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        done.create().show();
+    }
+
+    private String buildCancelPurchaseUri(int bid) {
+        String host = getResources().getString(R.string.urlServerLink);
+        String cancelPurchase = getResources().getString(R.string.urlTransactionDelete);
+        String url = host + cancelPurchase;
+        String bidQuery = "bkid";
+        String bidValue = String.valueOf(bid);
+        return Uri.parse(url).buildUpon().appendQueryParameter(bidQuery, bidValue).build().toString();
+    }
+
+    private void cancelPurchase(int bid) {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, buildCancelPurchaseUri(bid), new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        VolleySingleton.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
+    }
+
+    private String buildMoveToAvailable(int bid) {
+        String host = getResources().getString(R.string.urlServerLink);
+        String cancelPurchase = getResources().getString(R.string.urlMoveToAvailable);
+        String url = host + cancelPurchase;
+        String bidQuery = "id";
+        String bidValue = String.valueOf(bid);
+        return Uri.parse(url).buildUpon().appendQueryParameter(bidQuery, bidValue).build().toString();
+    }
+
+    private void moveToAvailable(int bid) {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, buildMoveToAvailable(bid), new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+                finish();
+                startActivity(new Intent(TransDetailActivity.this, MainActivity.class));
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        VolleySingleton.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
     }
 }

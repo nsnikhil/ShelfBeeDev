@@ -11,7 +11,12 @@
     <string name="imageErrorDescription">Error</string>
     <string name="alluploads">All Uploads</string>
     <string name="allpurchases">All Purchases</string>
-
+    <string name="deleteBook">Delete Book</string>
+    <string name="deletrequest">Delete Request</string>
+    <string name="deleteuser">Delete User</string>
+    <string name="myLoading">Just a sec…</string>
+    <string name="key">enter the key</string>
+    <string name="submit">Submit</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -34,6 +39,7 @@
     <string name="detailRequestid">Request id</string>
     <string name="detailBook">Book Details</string>
     <string name="detailDate">Date</string>
+    <string name="detailCancel">Cancel</string>
     <string name="detailDone">Delivered</string>
     <string name="detailPurchasedOn">Purchased On</string>
     <string name="detailDeliveryDate">Delivery Date</string>
@@ -74,6 +80,15 @@
     <string name="urlUserQueryUid">booktrade/userQueryAll.php</string>
     <string name="urlRequestQueryRid">booktrade/requestQueryRid.php</string>
     <string name="urlBookQueryBid">booktrade/bookQueryBid.php</string>
+    <string name="urlTransactionDelete" translatable="false">booktrade/transactionDelete.php</string>
+    <string name="urlMoveToAvailable" translatable="false">booktrade/bookMoveToAvalilable.php</string>
+
+
+    <string name="urlDeleteBook">booktrade/bookDeleteSingle.php</string>
+    <string name="urlDeleteRequest">booktrade/requestDelete.php</string>
+    <string name="urlDeleteUser">booktrade/.php</string>
+    <string name="urlDeleteUserBooks">booktrade/userDeleteBook.php</string>
+    <string name="urlDeleteUserRequest">booktrade/userDeleteRequest.php</string>
     <!-- -->
 
     <!-- IntentExtra-->

@@ -9,6 +9,11 @@
         android:id="@+id/searchToolbar"
         layout="@layout/toolbar" />
 
+    <ProgressBar
+        android:id="@+id/searchProgressBar"
+        android:visibility="gone"
+        style="@style/progressBar" />
+
     <ListView
         android:id="@+id/searchListView"
         style="@style/matchParent"

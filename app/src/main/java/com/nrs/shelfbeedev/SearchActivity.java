@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -41,6 +42,7 @@ public class SearchActivity extends AppCompatActivity {
     @BindView(R.id.sSearchView) MaterialSearchView mSearchView;
     @BindView(R.id.searchListView) ListView mSearchList;
     @BindView(R.id.searchImage) ImageView mSearchImage;
+    @BindView(R.id.searchProgressBar) ProgressBar mSearchProgress;
     private static final String NULL_VALUE = "N/A";
     private static String mUrl;
     ArrayList<ObjectBook> mBookObjectList;
@@ -73,6 +75,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 getData(s);
+                mSearchProgress.setVisibility(View.VISIBLE);
                 return false;
             }
 
@@ -130,6 +133,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void makeBookList(JSONArray response) throws JSONException {
+        mSearchProgress.setVisibility(View.GONE);
         if(response.length()>0){
             mSearchImage.setVisibility(View.GONE);
             for(int i=0;i<response.length();i++){
@@ -164,6 +168,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void makeRequestList(JSONArray response) throws JSONException {
+        mSearchProgress.setVisibility(View.GONE);
         if(response.length()>0){
             mSearchImage.setVisibility(View.GONE);
             for(int i=0;i<response.length();i++){
@@ -182,6 +187,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void makeUserList(JSONArray response) throws JSONException {
+        mSearchProgress.setVisibility(View.GONE);
         if(response.length()>0){
             mSearchImage.setVisibility(View.GONE);
             for(int i=0;i<response.length();i++){
@@ -236,4 +242,5 @@ public class SearchActivity extends AppCompatActivity {
         mSearchView.setMenuItem(item);
         return true;
     }
+
 }

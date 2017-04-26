@@ -13,7 +13,7 @@
         android:layout_below="@id/detailContainerToolbar">
 
         <LinearLayout style="@style/verticalLinearLayout">
-
+            
             <RelativeLayout
                 android:id="@+id/containerOther"
                 style="@style/wrapContent" />

@@ -81,6 +81,15 @@
 
             </LinearLayout>
 
+            <Button
+                style="@style/matchParent"
+                android:id="@+id/userInfoDelete"
+                android:text="@string/deleteuser"
+                android:textSize="20sp"
+                android:padding="@dimen/sixteen"
+                android:layout_height="wrap_content"
+                android:theme="@style/buttonColor"/>
+
         </LinearLayout>
 
 

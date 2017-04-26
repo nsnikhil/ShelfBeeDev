@@ -42,6 +42,15 @@
                 style="@style/detailText"
                 android:text="@string/detailRequestid" />
 
+            <Button
+                style="@style/matchParent"
+                android:id="@+id/requestInfoDelete"
+                android:text="@string/deletrequest"
+                android:textSize="20sp"
+                android:padding="@dimen/sixteen"
+                android:layout_height="wrap_content"
+                android:theme="@style/buttonColor"/>
+
         </LinearLayout>
 
     </android.support.v7.widget.CardView>

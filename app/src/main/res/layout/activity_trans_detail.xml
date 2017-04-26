@@ -9,18 +9,37 @@
         android:id="@+id/detailToolbar"
         layout="@layout/toolbar" />
 
-    <Button
-        android:id="@+id/detailsDone"
-        style="@style/wrapContent"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/deatilButtonContainer"
+        style="@style/horizontalLinearLayout"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"
-        android:text="@string/detailDone"
-        android:textColor="@color/cardview_light_background" />
+        android:background="@color/colorPrimary">
+
+        <Button
+            android:id="@+id/detailsCancel"
+            style="@style/wrapContent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:background="@color/colorPrimaryLight"
+            android:text="@string/detailCancel"
+            android:textColor="@color/cardview_light_background" />
+
+        <Button
+            android:id="@+id/detailsDone"
+            style="@style/wrapContent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:text="@string/detailDone"
+            android:textColor="@color/cardview_light_background" />
+
+    </LinearLayout>
 
     <ScrollView
         style="@style/matchParent"
-        android:layout_above="@id/detailsDone"
+        android:layout_above="@id/deatilButtonContainer"
         android:layout_below="@id/detailToolbar">
 
         <LinearLayout style="@style/verticalLinearLayout">
@@ -103,24 +122,24 @@
                     android:orientation="vertical"
                     android:padding="@dimen/eight">
 
-                <TextView
-                    android:id="@+id/detailDateHeading"
-                    style="@style/detailHeading"
-                    android:text="@string/detailDate" />
+                    <TextView
+                        android:id="@+id/detailDateHeading"
+                        style="@style/detailHeading"
+                        android:text="@string/detailDate" />
 
-                <TextView
-                    android:id="@+id/detailPurchaseDate"
-                    style="@style/detailText"
-                    android:text="@string/detailPurchasedOn" />
+                    <TextView
+                        android:id="@+id/detailPurchaseDate"
+                        style="@style/detailText"
+                        android:text="@string/detailPurchasedOn" />
 
-                <TextView
-                    android:id="@+id/detailDeliveryDate"
-                    style="@style/detailText"
-                    android:text="@string/detailDeliveryDate" />
+                    <TextView
+                        android:id="@+id/detailDeliveryDate"
+                        style="@style/detailText"
+                        android:text="@string/detailDeliveryDate" />
 
                 </LinearLayout>
 
-                </android.support.v7.widget.CardView>
+            </android.support.v7.widget.CardView>
 
 
             <android.support.v7.widget.CardView

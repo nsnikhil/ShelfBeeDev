@@ -57,8 +57,12 @@ public class AdapterTransaction extends BaseAdapter {
             myViewHolder = (MyViewHolder) convertView.getTag();
         }
         ObjectBookTransaction object = mList.get(position);
-        myViewHolder.mName.setText(object.getName());
-        myViewHolder.mDate.setText(makeDate(object.getBuytime()));
+        myViewHolder.mName.setText(object.getName().substring(0,1).toUpperCase()+object.getName().substring(1));
+        if(object.getTransStatus().equalsIgnoreCase("0")){
+            myViewHolder.mDate.setText(makeDate(object.getBuytime()));
+        }else {
+            myViewHolder.mDate.setText(mContext.getResources().getString(R.string.detailDone));
+        }
         return convertView;
     }
 
@@ -66,7 +70,8 @@ public class AdapterTransaction extends BaseAdapter {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(Long.parseLong(time));
-        return formatter.format(calendar.getTime());
+        calendar.add(Calendar.DATE,7);
+        return   "Due date : "+ formatter.format(calendar.getTime());
     }
 
 

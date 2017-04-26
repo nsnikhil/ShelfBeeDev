@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.nrs.shelfbeedev.fragments.FragmentAllTransactions;
 import com.nrs.shelfbeedev.fragments.FragmentAllUser;
 import com.nrs.shelfbeedev.fragments.FragmentViewPager;
+import com.nrs.shelfbeedev.fragments.dialogFragments.VerifcationDialogFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         setTheme(R.style.transparentStatusBar);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        buildCheck();
         initialize();
         addOnConnection(savedInstanceState);
     }
@@ -66,6 +68,12 @@ public class MainActivity extends AppCompatActivity {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+    }
+
+    private void buildCheck(){
+        VerifcationDialogFragment verifcationDialogFragment = new VerifcationDialogFragment();
+        verifcationDialogFragment.setCancelable(false);
+        verifcationDialogFragment.show(getFragmentManager(),"verify");
     }
 
     private void addOnConnection(Bundle savedInstanceState) {
